@@ -1,0 +1,15 @@
+{
+	"defaultSeverity": "error",
+	"extends": ["tslint-config-airbnb", "tslint-config-prettier"],
+	"jsRules": {},
+	"rules": {
+		"import-name": false,
+		"ter-indent": [true, "tab"],
+		"quotemark": [true, "single", "jsx-double"],
+		"variable-name": [true, "allow-pascal-case"]
+	},
+	"rulesDirectory": [],
+	"linterOptions": {
+		"exclude": ["node_modules/**"]
+	}
+}
