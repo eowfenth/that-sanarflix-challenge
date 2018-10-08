@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+		"lint": "tslint -p tsconfig.json -t stylish",
+		"lint:fix": "npm run lint -- --fix",
+		"tsc": "tsc"
   },
   "dependencies": {
     "react": "16.3.1",
@@ -15,6 +17,7 @@
     "@types/react-native": "^0.57.4",
     "babel-jest": "23.6.0",
     "babel-preset-react-native": "4.0.1",
+		"husky": "^1.1.1",
     "jest": "23.6.0",
     "prettier": "^1.14.3",
     "react-native-typescript-transformer": "^1.2.10",
@@ -24,6 +27,11 @@
     "tslint-config-prettier": "^1.15.0",
     "typescript": "^3.1.1"
   },
+	"husky": {
+		"hooks": {
+			"pre-commit": "npm run lint"
+		}
+	},
   "jest": {
     "preset": "react-native"
   }
