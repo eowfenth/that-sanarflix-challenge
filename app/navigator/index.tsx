@@ -1,5 +1,6 @@
 import { createStackNavigator } from 'react-navigation';
 import CoursesListScreen from '../containers/CoursesListScreen';
+import ModulesListScreen from '../containers/ModulesListScreen';
 
 const Navigator = createStackNavigator(
 	{
@@ -7,6 +8,12 @@ const Navigator = createStackNavigator(
 			screen: CoursesListScreen,
 			navigationOptions: {
 				header: null,
+			},
+		},
+		Modules: {
+			screen: ModulesListScreen,
+			navigationOptions: {
+				title: 'Módulos',
 			},
 		},
 	},
