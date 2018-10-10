@@ -40,7 +40,7 @@ const CoursesList = (props: IProps) => {
 					<CardItem bordered button header onPress={props.onPress}>
 						<Text>{item.nome}</Text>
 					</CardItem>
-					<CardItem cardBody>
+					<CardItem cardBody button onPress={props.onPress}>
 						<Image
 							source={{
 								uri:
@@ -49,7 +49,7 @@ const CoursesList = (props: IProps) => {
 							style={styles.image}
 						/>
 					</CardItem>
-					<CardItem footer>
+					<CardItem footer button onPress={props.onPress}>
 						<Text>{areaFormatter(item.area)}</Text>
 					</CardItem>
 				</Card>
