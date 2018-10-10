@@ -4,7 +4,6 @@
 	"jsRules": {},
 	"rules": {
 		"import-name": false,
-		"ter-indent": [true, "tab"],
 		"quotemark": [true, "single", "jsx-double"],
 		"variable-name": [true, "allow-pascal-case"]
 	},
