@@ -1,83 +1,91 @@
 {
-  "name": "sanarflix",
-  "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start",
-    "storybook": "storybook start -p 7007",
-    "devtools": "adb shell input keyevent 82",
-    "release": "cd android && ./gradlew assembleRelease",
-    "start:android": "react-native run-android",
-    "start:emulator": "emulator -avd Skinless",
-    "test": "node node_modules/jest/bin/jest --verbose --coverage",
-    "test:coverage": "node node_modules/jest/bin/jest --verbose --coverage && open ./coverage/lcov-report/index.html",
-    "test:update": "node node_modules/jest/bin/jest --verbose --coverage --updateSnapshot",
-    "test:watch": "node node_modules/jest/bin/jest --verbose --watch",
-    "lint": "tslint -p tsconfig.json -t stylish",
-    "lint:fix": "npm run lint -- --fix",
-    "tsc": "tsc"
-  },
-  "dependencies": {
-    "native-base": "^2.8.1",
-    "react": "16.3.1",
-    "react-native": "0.55.4"
-  },
-  "devDependencies": {
-    "@storybook/addon-actions": "^3.4.11",
-    "@storybook/addon-knobs": "3.4.11",
-    "@storybook/addon-links": "^3.4.11",
-    "@storybook/addons": "^3.4.11",
-    "@storybook/react": "3.4.11",
-    "@storybook/react-native": "^3.4.11",
-    "@types/jest": "^23.3.4",
-    "@types/react": "^16.4.16",
-    "@types/react-native": "^0.57.4",
+	"name": "sanarflix",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"start": "node node_modules/react-native/local-cli/cli.js start",
+		"storybook": "storybook start -p 7007",
+		"devtools": "adb shell input keyevent 82",
+		"release": "cd android && ./gradlew assembleRelease",
+		"start:android": "react-native run-android",
+		"start:emulator": "emulator -avd Skinless",
+		"test": "node node_modules/jest/bin/jest --verbose --coverage",
+		"test:coverage": "node node_modules/jest/bin/jest --verbose --coverage && open ./coverage/lcov-report/index.html",
+		"test:update": "node node_modules/jest/bin/jest --verbose --coverage --updateSnapshot",
+		"test:watch": "node node_modules/jest/bin/jest --verbose --watch",
+		"lint": "tslint -p tsconfig.json -t stylish",
+		"lint:fix": "npm run lint -- --fix",
+		"tsc": "tsc"
+	},
+	"dependencies": {
+		"native-base": "^2.8.1",
+		"react": "16.3.1",
+		"react-native": "0.55.4",
+		"react-redux": "^5.0.7",
+		"redux": "^4.0.0",
+		"redux-persist": "^5.9.1",
+		"reduxsauce": "^1.0.0",
+		"seamless-immutable": "^7.1.4"
+	},
+	"devDependencies": {
+		"@storybook/addon-actions": "^3.4.11",
+		"@storybook/addon-knobs": "3.4.11",
+		"@storybook/addon-links": "^3.4.11",
+		"@storybook/addons": "^3.4.11",
+		"@storybook/react": "3.4.11",
+		"@storybook/react-native": "^3.4.11",
+		"@types/jest": "^23.3.4",
+		"@types/react": "^16.4.16",
+		"@types/react-native": "^0.57.4",
 		"@types/react-navigation": "^2.0.24",
-    "@types/react-test-renderer": "^16.0.3",
-    "@types/storybook__addon-actions": "3.4.1",
-    "@types/storybook__addon-links": "3.3.2",
-    "@types/storybook__react": "3.0.9",
-    "@types/storybook__react-native": "3.0.2",
-    "babel-core": "6.26.3",
-    "babel-jest": "23.6.0",
-    "babel-preset-react-native": "4.0.1",
-    "babel-runtime": "6.26.0",
-    "husky": "^1.1.1",
-    "jest": "23.6.0",
-    "prettier": "^1.14.3",
-    "react-native-typescript-transformer": "^1.2.10",
+		"@types/react-redux": "^6.0.9",
+		"@types/react-test-renderer": "^16.0.3",
+		"@types/redux-persist": "^4.3.1",
+		"@types/seamless-immutable": "^7.1.2",
+		"@types/storybook__addon-actions": "3.4.1",
+		"@types/storybook__addon-links": "3.3.2",
+		"@types/storybook__react": "3.0.9",
+		"@types/storybook__react-native": "3.0.2",
+		"babel-core": "6.26.3",
+		"babel-jest": "23.6.0",
+		"babel-preset-react-native": "4.0.1",
+		"babel-runtime": "6.26.0",
+		"husky": "^1.1.1",
+		"jest": "23.6.0",
+		"prettier": "^1.14.3",
+		"prop-types": "^15.6.2",
+		"react-dom": "16.3.1",
+		"react-native-typescript-transformer": "^1.2.10",
 		"react-navigation": "^2.17.0",
-    "react-test-renderer": "16.3.1",
-    "ts-jest": "^23.10.4",
-    "tslint": "^5.11.0",
-    "tslint-config-airbnb": "^5.11.0",
-    "tslint-config-prettier": "^1.15.0",
-    "typescript": "^3.1.1",
-    "react-dom": "16.3.1",
-    "prop-types": "^15.6.2"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint"
-    }
-  },
-  "jest": {
-    "preset": "react-native",
-    "cacheDirectory": ".jest/cache",
-    "transform": {
-      "^.+\\.(js|ts|tsx)?$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
-    },
-    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
-    "transformIgnorePatterns": [
-      "/node_modules/(?!react-native)/.+"
-    ],
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
-    ]
-  }
+		"react-test-renderer": "16.3.1",
+		"ts-jest": "^23.10.4",
+		"tslint": "^5.11.0",
+		"tslint-config-airbnb": "^5.11.0",
+		"tslint-config-prettier": "^1.15.0",
+		"typescript": "^3.1.1"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "npm run lint"
+		}
+	},
+	"jest": {
+		"preset": "react-native",
+		"cacheDirectory": ".jest/cache",
+		"transform": {
+			"^.+\\.(js|ts|tsx)?$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
+		},
+		"testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+		"transformIgnorePatterns": [
+			"/node_modules/(?!react-native)/.+"
+		],
+		"moduleFileExtensions": [
+			"ts",
+			"tsx",
+			"js",
+			"jsx",
+			"json",
+			"node"
+		]
+	}
 }
