@@ -11,7 +11,7 @@ interface Course {
 
 interface IProps {
 	data: Course[];
-	onPress: () => void;
+	onPress: (id: string) => void;
 }
 
 const keyExtractor = (item: Course) => item.id.toString();
@@ -29,18 +29,18 @@ const areaFormatter = (area: string) => {
 	}
 };
 
+
 const CoursesList = (props: IProps) => {
-	console.log(props);
 	return (
 		<FlatList
 			data={props.data}
 			keyExtractor={keyExtractor}
 			renderItem={({ item }) => (
 				<Card>
-					<CardItem bordered button header onPress={props.onPress}>
+					<CardItem bordered button header onPress={() => props.onPress(item.id.toString())}>
 						<Text>{item.nome}</Text>
 					</CardItem>
-					<CardItem cardBody button onPress={props.onPress}>
+					<CardItem cardBody button onPress={() => props.onPress(item.id.toString())}>
 						<Image
 							source={{
 								uri:
@@ -49,7 +49,7 @@ const CoursesList = (props: IProps) => {
 							style={styles.image}
 						/>
 					</CardItem>
-					<CardItem footer button onPress={props.onPress}>
+					<CardItem footer button onPress={() => props.onPress(item.id.toString())}>
 						<Text>{areaFormatter(item.area)}</Text>
 					</CardItem>
 				</Card>
