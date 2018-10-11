@@ -1,48 +1,21 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
+import React from 'react';
+import { View } from 'react-native';
+import Navigator from './app/navigator';
+import { Provider } from 'react-redux';
 
-import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
+import createStore from './app/redux/redux';
+import PersistGate from './app/redux/persist';
+import Immutable from 'seamless-immutable';
 
-const instructions = Platform.select({
-	ios: `Press Cmd+R to reload,\nCmd+D or shake for dev menu`,
-	android: `Double tap R on your keyboard to reload,\nShake or press menu button for dev menu`,
-});
-
-export default class App extends Component {
+const { store, persistor } = createStore();
+export default class App extends React.Component {
 	render() {
 		return (
-			<View style={styles.container}>
-				<Text style={styles.welcome}>
-					Welcome to React Native with Typescript!
-				</Text>
-				<Text style={styles.instructions}>
-					To get started, edit App.tsx
-				</Text>
-				<Text style={styles.instructions}>{instructions}</Text>
-			</View>
+			<Provider store={store}>
+				<PersistGate persistor={persistor}>
+					<Navigator />
+				</PersistGate>
+			</Provider>
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		justifyContent: 'center',
-		alignItems: 'center',
-		backgroundColor: '#F5FCFF',
-	},
-	welcome: {
-		fontSize: 20,
-		textAlign: 'center',
-		margin: 10,
-	},
-	instructions: {
-		textAlign: 'center',
-		color: '#333333',
-		marginBottom: 5,
-	},
-});

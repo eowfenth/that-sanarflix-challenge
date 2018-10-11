@@ -2,6 +2,8 @@ import React from 'react';
 import { Container } from 'native-base';
 import { ModulesList, Spinner } from '../../components';
 import { NavigationScreenProps } from 'react-navigation';
+import { connect } from 'react-redux';
+import mainActions from '../../redux/main';
 
 interface Module {
 	id: number;
@@ -13,29 +15,33 @@ interface Module {
 	}[];
 }
 
-interface IState {
+interface IProps {
+	modulesSuccess: Function;
 	modules: Module[];
 }
+interface IState {}
 
-class ModulesListScreen extends React.Component<NavigationScreenProps, IState> {
-	state: IState = {
-		modules: [],
-	};
-
+class ModulesListScreen extends React.Component<
+	NavigationScreenProps & IProps,
+	IState
+> {
 	async componentDidMount() {
 		const response = await fetch(
 			'http://5b7570f8deca780014ec9f86.mockapi.io/v1/modulos'
 		);
 		const modules: Module[] = await response.json();
-		this.setState({ modules });
+		// if (this.props.modules.length === 0) {
+		// 	this.props.modulesSuccess(modules);
+		// }
+		this.props.modulesSuccess(modules);
 	}
 
-	openContent = () => {
-		this.props.navigation.navigate('Content');
+	openContent = (id: string) => {
+		this.props.navigation.navigate('Content', { id });
 	};
 
 	render() {
-		const { modules } = this.state;
+		const { modules } = this.props;
 		console.log(modules);
 		return (
 			<Container>
@@ -49,4 +55,18 @@ class ModulesListScreen extends React.Component<NavigationScreenProps, IState> {
 	}
 }
 
-export default ModulesListScreen;
+const mapStateToProps = (state: any) => {
+	return {
+		modules: state.main.modules,
+	};
+};
+
+const mapDispatchToProps = (dispatch: any) => ({
+	modulesSuccess: (ids: string[]) =>
+		dispatch(mainActions.modulesSuccess(ids)),
+});
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(ModulesListScreen);
