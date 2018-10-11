@@ -37,42 +37,36 @@ class ContentItems extends React.Component<IProps> {
 				data={flatListData}
 				keyExtractor={this.keyExtractor}
 				renderItem={({ item, index }) => (
-					console.log('oi', selected[`${moduleId}_${index}`]),
-					(
-						<List style={{}}>
-							<ListItem
-								noIndent
-								onPress={() =>
-									this.handlePlayButton(moduleId, index)
-								}
-							>
-								<Body style={{ flexDirection: 'row' }}>
-									<Text>{item.titulo}</Text>
-								</Body>
-								<Right>
-									<Button
-										transparent
-										icon
-										onPress={() =>
-											this.handlePlayButton(
-												moduleId,
-												index
-											)
+					<List style={styles.listItem}>
+						<ListItem
+							noIndent
+							onPress={() =>
+								this.handlePlayButton(moduleId, index)
+							}
+						>
+							<Body style={{ flexDirection: 'row' }}>
+								<Text style={styles.title}>{item.titulo}</Text>
+							</Body>
+							<Right>
+								<Button
+									transparent
+									icon
+									onPress={() =>
+										this.handlePlayButton(moduleId, index)
+									}
+								>
+									<Icon
+										style={
+											item.selected
+												? styles.white
+												: styles.redIcon
 										}
-									>
-										<Icon
-											style={
-												item.selected
-													? styles.grayIcon
-													: styles.blueIcon
-											}
-											name="play"
-										/>
-									</Button>
-								</Right>
-							</ListItem>
-						</List>
-					)
+										name="play"
+									/>
+								</Button>
+							</Right>
+						</ListItem>
+					</List>
 				)}
 			/>
 		);
@@ -84,11 +78,20 @@ const styles = {
 		height: 200,
 		flex: 1,
 	},
-	blueIcon: {
-		color: 'blue',
+	redIcon: {
+		color: 'rgba(255,0,0,7)',
 	},
-	grayIcon: {
-		color: '#CCCCCC',
+	white: {
+		color: '#ffffff',
+	},
+	text: {
+		color: '#ffffff',
+	},
+	title: {
+		color: '#ffffff',
+	},
+	listItem: {
+		backgroundColor: 'rgba(12,29,41,0.7)',
 	},
 };
 

@@ -41,10 +41,9 @@ class CoursesListScreen extends React.Component<
 	};
 
 	render() {
-		console.log('Props', this.props);
 		const { courses } = this.props;
 		return (
-			<Container>
+			<Container style={{ backgroundColor: 'rgba(12,29,41,0.5)' }}>
 				{courses.length === 0 ? (
 					<Spinner centered />
 				) : (

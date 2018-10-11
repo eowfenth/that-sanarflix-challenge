@@ -29,28 +29,47 @@ const areaFormatter = (area: string) => {
 	}
 };
 
-
 const CoursesList = (props: IProps) => {
+	const flatListData = props.data.map((x, index) => ({
+		...x,
+		image: images[index],
+	}));
 	return (
 		<FlatList
-			data={props.data}
+			data={flatListData}
 			keyExtractor={keyExtractor}
 			renderItem={({ item }) => (
 				<Card>
-					<CardItem bordered button header onPress={() => props.onPress(item.id.toString())}>
-						<Text>{item.nome}</Text>
+					<CardItem
+						style={styles.cardItem}
+						bordered
+						button
+						header
+						onPress={() => props.onPress(item.id.toString())}
+					>
+						<Text style={styles.title}>{item.nome}</Text>
 					</CardItem>
-					<CardItem cardBody button onPress={() => props.onPress(item.id.toString())}>
+					<CardItem
+						cardBody
+						button
+						onPress={() => props.onPress(item.id.toString())}
+					>
 						<Image
 							source={{
-								uri:
-									'https://s3.amazonaws.com/thinkific/courses/course_card_image_000/324/4671538161298.medium.jpg?1538161298',
+								uri: item.image,
 							}}
 							style={styles.image}
 						/>
 					</CardItem>
-					<CardItem footer button onPress={() => props.onPress(item.id.toString())}>
-						<Text>{areaFormatter(item.area)}</Text>
+					<CardItem
+						footer
+						button
+						style={styles.cardItem}
+						onPress={() => props.onPress(item.id.toString())}
+					>
+						<Text style={styles.text}>
+							{areaFormatter(item.area)}
+						</Text>
 					</CardItem>
 				</Card>
 			)}
@@ -63,6 +82,66 @@ const styles = {
 		height: 200,
 		flex: 1,
 	},
+	text: {
+		color: '#ffffff',
+	},
+	title: {
+		color: '#ffffff',
+	},
+	cardItem: {
+		backgroundColor: 'rgba(12,29,41,0.6)',
+	},
 };
 
 export default CoursesList;
+
+const images = [
+	'https://s3.amazonaws.com/thinkific/courses/course_card_image_000/324/4671538161298.medium.jpg?1538161298',
+	'https://s3.amazonaws.com/thinkific/courses/course_card_image_000/241/1741538601024.medium.jpg?1538601024',
+	'https://s3.amazonaws.com/thinkific/courses/course_card_image_000/241/7491538400868.medium.jpg?1538400868',
+	'https://s3.amazonaws.com/thinkific/courses/course_card_image_000/280/0831538665409.medium.jpg?1538665409',
+	'https://s3.amazonaws.com/thinkific/courses/course_card_image_000/241/7891538601897.medium.jpg?1538601897',
+	'https://s3.amazonaws.com/thinkific/courses/course_card_image_000/241/8681538161581.medium.jpg?1538161581',
+	'https://s3.amazonaws.com/thinkific/courses/course_card_image_000/324/4671538161298.medium.jpg?1538161298',
+	'https://s3.amazonaws.com/thinkific/courses/course_card_image_000/241/1741538601024.medium.jpg?1538601024',
+	'https://s3.amazonaws.com/thinkific/courses/course_card_image_000/241/7491538400868.medium.jpg?1538400868',
+	'https://s3.amazonaws.com/thinkific/courses/course_card_image_000/280/0831538665409.medium.jpg?1538665409',
+	'https://s3.amazonaws.com/thinkific/courses/course_card_image_000/241/7891538601897.medium.jpg?1538601897',
+	'https://s3.amazonaws.com/thinkific/courses/course_card_image_000/241/8681538161581.medium.jpg?1538161581',
+	'https://s3.amazonaws.com/thinkific/courses/course_card_image_000/324/4671538161298.medium.jpg?1538161298',
+	'https://s3.amazonaws.com/thinkific/courses/course_card_image_000/241/1741538601024.medium.jpg?1538601024',
+	'https://s3.amazonaws.com/thinkific/courses/course_card_image_000/241/7491538400868.medium.jpg?1538400868',
+	'https://s3.amazonaws.com/thinkific/courses/course_card_image_000/280/0831538665409.medium.jpg?1538665409',
+	'https://s3.amazonaws.com/thinkific/courses/course_card_image_000/241/7891538601897.medium.jpg?1538601897',
+	'https://s3.amazonaws.com/thinkific/courses/course_card_image_000/241/8681538161581.medium.jpg?1538161581',
+	'https://s3.amazonaws.com/thinkific/courses/course_card_image_000/324/4671538161298.medium.jpg?1538161298',
+	'https://s3.amazonaws.com/thinkific/courses/course_card_image_000/241/1741538601024.medium.jpg?1538601024',
+	'https://s3.amazonaws.com/thinkific/courses/course_card_image_000/241/7491538400868.medium.jpg?1538400868',
+	'https://s3.amazonaws.com/thinkific/courses/course_card_image_000/280/0831538665409.medium.jpg?1538665409',
+	'https://s3.amazonaws.com/thinkific/courses/course_card_image_000/241/7891538601897.medium.jpg?1538601897',
+	'https://s3.amazonaws.com/thinkific/courses/course_card_image_000/241/8681538161581.medium.jpg?1538161581',
+	'https://s3.amazonaws.com/thinkific/courses/course_card_image_000/324/4671538161298.medium.jpg?1538161298',
+	'https://s3.amazonaws.com/thinkific/courses/course_card_image_000/241/1741538601024.medium.jpg?1538601024',
+	'https://s3.amazonaws.com/thinkific/courses/course_card_image_000/241/7491538400868.medium.jpg?1538400868',
+	'https://s3.amazonaws.com/thinkific/courses/course_card_image_000/280/0831538665409.medium.jpg?1538665409',
+	'https://s3.amazonaws.com/thinkific/courses/course_card_image_000/241/7891538601897.medium.jpg?1538601897',
+	'https://s3.amazonaws.com/thinkific/courses/course_card_image_000/241/8681538161581.medium.jpg?1538161581',
+	'https://s3.amazonaws.com/thinkific/courses/course_card_image_000/324/4671538161298.medium.jpg?1538161298',
+	'https://s3.amazonaws.com/thinkific/courses/course_card_image_000/241/1741538601024.medium.jpg?1538601024',
+	'https://s3.amazonaws.com/thinkific/courses/course_card_image_000/241/7491538400868.medium.jpg?1538400868',
+	'https://s3.amazonaws.com/thinkific/courses/course_card_image_000/280/0831538665409.medium.jpg?1538665409',
+	'https://s3.amazonaws.com/thinkific/courses/course_card_image_000/241/7891538601897.medium.jpg?1538601897',
+	'https://s3.amazonaws.com/thinkific/courses/course_card_image_000/241/8681538161581.medium.jpg?1538161581',
+	'https://s3.amazonaws.com/thinkific/courses/course_card_image_000/324/4671538161298.medium.jpg?1538161298',
+	'https://s3.amazonaws.com/thinkific/courses/course_card_image_000/241/1741538601024.medium.jpg?1538601024',
+	'https://s3.amazonaws.com/thinkific/courses/course_card_image_000/241/7491538400868.medium.jpg?1538400868',
+	'https://s3.amazonaws.com/thinkific/courses/course_card_image_000/280/0831538665409.medium.jpg?1538665409',
+	'https://s3.amazonaws.com/thinkific/courses/course_card_image_000/241/7891538601897.medium.jpg?1538601897',
+	'https://s3.amazonaws.com/thinkific/courses/course_card_image_000/241/8681538161581.medium.jpg?1538161581',
+	'https://s3.amazonaws.com/thinkific/courses/course_card_image_000/324/4671538161298.medium.jpg?1538161298',
+	'https://s3.amazonaws.com/thinkific/courses/course_card_image_000/241/1741538601024.medium.jpg?1538601024',
+	'https://s3.amazonaws.com/thinkific/courses/course_card_image_000/241/7491538400868.medium.jpg?1538400868',
+	'https://s3.amazonaws.com/thinkific/courses/course_card_image_000/280/0831538665409.medium.jpg?1538665409',
+	'https://s3.amazonaws.com/thinkific/courses/course_card_image_000/241/7891538601897.medium.jpg?1538601897',
+	'https://s3.amazonaws.com/thinkific/courses/course_card_image_000/241/8681538161581.medium.jpg?1538161581',
+];

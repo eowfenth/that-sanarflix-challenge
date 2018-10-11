@@ -26,14 +26,14 @@ const ModulesList = (props: IProps) => {
 			data={props.data}
 			keyExtractor={keyExtractor}
 			renderItem={({ item, index }) => (
-				<List style={{ marginTop: 15 }}>
+				<List style={styles.listItem}>
 					<ListItem
 						noIndent
 						onPress={() => onPress(index.toString())}
 					>
 						<Body>
-							<Text>{item.nome}</Text>
-							<Text note numberOfLines={1}>
+							<Text style={styles.title}>{item.nome}</Text>
+							<Text note numberOfLines={1} style={styles.text}>
 								{item.conteudos.length > 1
 									? `${item.conteudos.length} aulas`
 									: `${item.conteudos.length} aula`}
@@ -45,7 +45,10 @@ const ModulesList = (props: IProps) => {
 								icon
 								onPress={() => onPress(index.toString())}
 							>
-								<Icon name="arrow-forward" />
+								<Icon
+									name="arrow-forward"
+									style={{ color: 'rgba(255,0,0,1)' }}
+								/>
 							</Button>
 						</Right>
 					</ListItem>
@@ -53,6 +56,22 @@ const ModulesList = (props: IProps) => {
 			)}
 		/>
 	);
+};
+
+const styles = {
+	image: {
+		height: 200,
+		flex: 1,
+	},
+	text: {
+		color: '#ffffff',
+	},
+	title: {
+		color: '#ffffff',
+	},
+	listItem: {	
+		backgroundColor: 'rgba(12,29,41,0.5)',
+	},
 };
 
 export default ModulesList;

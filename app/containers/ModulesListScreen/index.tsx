@@ -44,7 +44,7 @@ class ModulesListScreen extends React.Component<
 		const { modules } = this.props;
 		console.log(modules);
 		return (
-			<Container>
+			<Container style={{ backgroundColor: 'rgba(12,29,41,0.5)' }}>
 				{modules.length === 0 ? (
 					<Spinner centered />
 				) : (
