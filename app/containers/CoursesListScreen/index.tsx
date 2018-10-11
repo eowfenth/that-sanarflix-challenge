@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native';
 import { CoursesList, Spinner } from '../../components';
 import { NavigationScreenProps } from 'react-navigation';
 import { connect } from 'react-redux';
-
+import mainActions from '../../redux/main';
 interface Course {
 	id: number;
 	nome: string;
@@ -17,30 +17,34 @@ interface IState {
 	hasError: boolean;
 }
 
-class CoursesListScreen extends React.Component<NavigationScreenProps, IState> {
-	state: IState = {
-		courses: [],
-		hasError: false,
-	};
-
+interface IProps {
+	coursesSuccess: Function;
+	courses: Course[];
+}
+class CoursesListScreen extends React.Component<
+	NavigationScreenProps & IProps,
+	IState
+> {
 	async componentDidMount() {
 		const response = await fetch(
 			'http://5b7570f8deca780014ec9f86.mockapi.io/v1/cursos'
 		);
 		const courses: Course[] = await response.json();
-		this.setState({ courses });
+
+		if (this.props.courses.length === 0) {
+			this.props.coursesSuccess(courses);
+		}
 	}
 
-	openModules = () => {
-		this.props.navigation.navigate('Modules');
+	openModules = (id: string) => {
+		this.props.navigation.navigate('Modules', { id });
 	};
 
 	render() {
-		console.log('Courses', this.state.courses);
-		console.log(this.props);
-		const { courses } = this.state;
+		console.log('Props', this.props);
+		const { courses } = this.props;
 		return (
-			<Container style={styles.container}>
+			<Container>
 				{courses.length === 0 ? (
 					<Spinner centered />
 				) : (
@@ -51,14 +55,18 @@ class CoursesListScreen extends React.Component<NavigationScreenProps, IState> {
 	}
 }
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		justifyContent: 'center',
-		alignItems: 'center',
-		backgroundColor: '#F5FCFF',
-	},
+const mapStateToProps = (state: any) => {
+	return {
+		courses: state.main.courses,
+	};
+};
+
+const mapDispatchToProps = (dispatch: any) => ({
+	coursesSuccess: (ids: string[]) =>
+		dispatch(mainActions.coursesSuccess(ids)),
 });
 
-export default CoursesListScreen;
-
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(CoursesListScreen);
