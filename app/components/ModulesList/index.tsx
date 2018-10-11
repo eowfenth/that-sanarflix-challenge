@@ -23,7 +23,7 @@ interface Module {
 
 interface IProps {
 	data: Module[];
-	onPress: () => void;
+	onPress: (id: string) => void;
 }
 
 const keyExtractor = (item: Module) => item.id.toString();
@@ -34,9 +34,12 @@ const ModulesList = (props: IProps) => {
 		<FlatList
 			data={props.data}
 			keyExtractor={keyExtractor}
-			renderItem={({ item }) => (
+			renderItem={({ item, index }) => (
 				<List style={{ marginTop: 15 }}>
-					<ListItem noIndent onPress={onPress}>
+					<ListItem
+						noIndent
+						onPress={() => onPress(index.toString())}
+					>
 						<Body>
 							<Text>{item.nome}</Text>
 							<Text note numberOfLines={1}>
@@ -46,7 +49,11 @@ const ModulesList = (props: IProps) => {
 							</Text>
 						</Body>
 						<Right>
-							<Button transparent icon onPress={onPress}>
+							<Button
+								transparent
+								icon
+								onPress={() => onPress(index.toString())}
+							>
 								<Icon name="arrow-forward" />
 							</Button>
 						</Right>
