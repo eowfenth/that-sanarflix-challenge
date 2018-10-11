@@ -52,6 +52,7 @@ const CoursesList = (props: IProps) => {
 					<CardItem
 						cardBody
 						button
+						style={styles.cardItem}
 						onPress={() => props.onPress(item.id.toString())}
 					>
 						<Image
