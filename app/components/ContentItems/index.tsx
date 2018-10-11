@@ -1,15 +1,6 @@
 import React from 'react';
-import { FlatList, Image } from 'react-native';
-import {
-	Button,
-	List,
-	ListItem,
-	Body,
-	Right,
-	Left,
-	Icon,
-	Text,
-} from 'native-base';
+import { FlatList } from 'react-native';
+import { Button, List, ListItem, Body, Right, Icon, Text } from 'native-base';
 
 interface Data {
 	id: number;
@@ -37,7 +28,6 @@ class ContentItems extends React.Component<IProps> {
 
 	render() {
 		const { module: moduleId, data, selected } = this.props;
-		console.log('props 12', this.props);
 		const flatListData = data.map((x, index) => ({
 			...x,
 			selected: selected[`${moduleId}_${index}`],

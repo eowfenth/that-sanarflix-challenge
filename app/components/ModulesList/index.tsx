@@ -1,15 +1,6 @@
 import React from 'react';
 import { FlatList, Image } from 'react-native';
-import {
-	Button,
-	List,
-	Icon,
-	ListItem,
-	Text,
-	Body,
-	Right,
-	Left,
-} from 'native-base';
+import { Button, List, Icon, ListItem, Text, Body, Right } from 'native-base';
 
 interface Module {
 	id: number;
@@ -62,13 +53,6 @@ const ModulesList = (props: IProps) => {
 			)}
 		/>
 	);
-};
-
-const styles = {
-	image: {
-		height: 80,
-		width: 120,
-	},
 };
 
 export default ModulesList;

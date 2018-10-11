@@ -1,6 +1,5 @@
 import React from 'react';
-import { FlatList, Image, TouchableOpacity } from 'react-native';
-import { Thumbnail } from 'native-base';
+import { Image } from 'react-native';
 
 interface IProps {}
 
