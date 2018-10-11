@@ -8,7 +8,7 @@ interface IProps {
 
 const NSpinner = (props: IProps) => (
 	<View style={props.centered && styles.centered}>
-		<Spinner />
+		<Spinner color="blue" />
 	</View>
 );
 
